@@ -6,6 +6,7 @@ use App\Repository\FileRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: FileRepository::class)]
 class File
@@ -13,15 +14,19 @@ class File
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: "file_id", type: "integer")]
+    #[Groups(['show_transaction'])]
     private ?int $fileId = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $path = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $hash = null;
 
     #[ORM\OneToMany(mappedBy: 'fileId', targetEntity: Transaction::class)]

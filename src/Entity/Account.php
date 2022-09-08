@@ -6,6 +6,7 @@ use App\Repository\AccountRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AccountRepository::class)]
 class Account
@@ -13,12 +14,15 @@ class Account
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: "account_id", type: "integer")]
+    #[Groups(['show_transaction'])]
     private ?int $accountId = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $num = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $label = null;
 
     #[ORM\OneToMany(mappedBy: 'accountId', targetEntity: Transaction::class)]

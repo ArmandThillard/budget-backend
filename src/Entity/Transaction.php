@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TransactionRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TransactionRepository::class)]
 class Transaction
@@ -12,43 +13,55 @@ class Transaction
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'transaction_id', type: 'integer')]
+    #[Groups(['show_transaction'])]
     private ?int $transactionId = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['show_transaction'])]
     private ?\DateTimeInterface $dateOp = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['show_transaction'])]
     private ?\DateTimeInterface $dateVal = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $label = null;
 
     #[ORM\ManyToOne(inversedBy: 'transactions')]
+    #[Groups(['show_transaction'])]
     #[ORM\JoinColumn(name: "category_id", referencedColumnName: "category_id")]
     private ?Category $categoryId = null;
 
     #[ORM\ManyToOne(inversedBy: 'transactions')]
+    #[Groups(['show_transaction'])]
     #[ORM\JoinColumn(name: "supplier_id", referencedColumnName: "supplier_id")]
     private ?Supplier $supplierId = null;
 
     #[ORM\Column]
+    #[Groups(['show_transaction'])]
     private ?float $amount = null;
 
     #[ORM\ManyToOne(inversedBy: 'transactions')]
     #[ORM\JoinColumn(name: "account_id", referencedColumnName: "account_id", nullable: false)]
+    #[Groups(['show_transaction'])]
     private ?Account $accountId = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $comment = null;
 
     #[ORM\Column]
+    #[Groups(['show_transaction'])]
     private ?bool $pointed = null;
 
     #[ORM\Column]
+    #[Groups(['show_transaction'])]
     private ?bool $need = null;
 
     #[ORM\ManyToOne(inversedBy: 'transactions')]
     #[ORM\JoinColumn(name: "file_id", referencedColumnName: "file_id", nullable: false)]
+    #[Groups(['show_transaction'])]
     private ?File $fileId = null;
 
     public function getTransactionId(): ?int

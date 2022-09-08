@@ -6,6 +6,7 @@ use App\Repository\SupplierRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SupplierRepository::class)]
 class Supplier
@@ -13,12 +14,15 @@ class Supplier
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: "supplier_id", type: "integer")]
+    #[Groups(['show_transaction'])]
     private ?int $supplierId = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $label = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_transaction'])]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'supplierId', targetEntity: Transaction::class)]
