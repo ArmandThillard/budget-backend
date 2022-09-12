@@ -39,6 +39,11 @@ class TransactionRepository extends ServiceEntityRepository
         }
     }
 
+    public function update(): void
+    {
+        $this->getEntityManager()->flush();
+    }
+
     /**
      * @return Transaction[] Returns an array of Transaction objects
      */
