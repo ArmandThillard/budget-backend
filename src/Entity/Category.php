@@ -12,7 +12,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Category
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
+    #[ORM\SequenceGenerator(sequenceName: "category_seq", initialValue: 1, allocationSize: 1)]
     #[ORM\Column(name: "category_id", type: "integer")]
     #[Groups(['show_transaction'])]
     private ?int $id = null;

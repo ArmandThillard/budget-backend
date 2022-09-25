@@ -11,7 +11,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Transaction
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
+    #[ORM\SequenceGenerator(sequenceName: "transaction_seq", initialValue: 1, allocationSize: 1)]
     #[ORM\Column(name: 'transaction_id', type: 'integer')]
     #[Groups(['show_transaction'])]
     private ?int $transactionId = null;
@@ -47,7 +48,7 @@ class Transaction
     #[Groups(['show_transaction'])]
     private ?Account $accountId = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['show_transaction'])]
     private ?string $comment = null;
 

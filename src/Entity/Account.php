@@ -12,7 +12,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Account
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
+    #[ORM\SequenceGenerator(sequenceName: "account_seq", initialValue: 1, allocationSize: 1)]
     #[ORM\Column(name: "account_id", type: "integer")]
     #[Groups(['show_transaction'])]
     private ?int $accountId = null;

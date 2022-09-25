@@ -12,7 +12,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Supplier
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
+    #[ORM\SequenceGenerator(sequenceName: "supplier_seq", initialValue: 1, allocationSize: 1)]
     #[ORM\Column(name: "supplier_id", type: "integer")]
     #[Groups(['show_transaction'])]
     private ?int $supplierId = null;
