@@ -50,7 +50,7 @@ class TransactionRepository extends ServiceEntityRepository
     public function findAll(): array
     {
         return $this->createQueryBuilder('t')
-            ->orderBy('t.transactionId', 'ASC')
+            ->orderBy('t.dateOp', 'DESC')
             ->getQuery()
             ->getResult();
     }
