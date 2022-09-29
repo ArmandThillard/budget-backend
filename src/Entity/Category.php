@@ -15,15 +15,15 @@ class Category
     #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\SequenceGenerator(sequenceName: "category_seq", initialValue: 1, allocationSize: 1)]
     #[ORM\Column(name: "category_id", type: "integer")]
-    #[Groups(['show_transaction'])]
-    private ?int $id = null;
+    #[Groups(['show_transaction', 'show_category'])]
+    private ?int $categoryId = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['show_transaction'])]
+    #[Groups(['show_transaction', 'show_category'])]
     private ?string $label = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['show_transaction'])]
+    #[Groups(['show_transaction', 'show_category'])]
     private ?int $parentCategoryId = null;
 
     #[ORM\OneToMany(mappedBy: 'categoryId', targetEntity: Transaction::class)]
@@ -34,9 +34,9 @@ class Category
         $this->transactions = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getCategoryId(): ?int
     {
-        return $this->id;
+        return $this->categoryId;
     }
 
     public function getLabel(): ?string
