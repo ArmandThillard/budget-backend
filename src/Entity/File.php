@@ -14,19 +14,19 @@ class File
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: "file_id", type: "integer")]
-    #[Groups(['show_transaction'])]
+    #[Groups(['show_transaction', 'show_file'])]
     private ?int $fileId = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['show_transaction'])]
+    #[Groups(['show_transaction', 'show_file'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['show_transaction'])]
+    #[Groups(['show_transaction', 'show_file'])]
     private ?string $path = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['show_transaction'])]
+    #[Groups(['show_transaction', 'show_file'])]
     private ?string $hash = null;
 
     #[ORM\OneToMany(mappedBy: 'fileId', targetEntity: Transaction::class)]
