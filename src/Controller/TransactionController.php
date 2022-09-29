@@ -48,6 +48,6 @@ class TransactionController extends AbstractController
 
         $transactionRepository->update();
 
-        return new Response('', 201);
+        return new Response('Transaction with id ' . $id . ' updated', 201);
     }
 }

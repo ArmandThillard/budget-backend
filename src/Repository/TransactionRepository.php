@@ -51,6 +51,7 @@ class TransactionRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->orderBy('t.dateOp', 'DESC')
+            ->groupBy("t.transactionId")
             ->getQuery()
             ->getResult();
     }
