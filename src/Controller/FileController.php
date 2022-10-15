@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\File;
 use App\Repository\FileRepository;
+use ImportFileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,13 +41,24 @@ class FileController extends AbstractController
 
         $projectDir = $this->getParameter('kernel.project_dir');
 
-        file_put_contents($projectDir . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . $filename, $data);
-        // $status = is_file($file) ? 201 : 400;
+        $filePath = $projectDir . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'csv' . DIRECTORY_SEPARATOR . $filename;
+
+        file_put_contents($filePath, $data);
+
+        $status = is_file($filePath) ? 201 : 400;
 
         $fileEntity = new File();
 
-        // $fileEntity->setName($file->originalName);
-        // $fileEntity->setPath();
-        return new Response('', 201);
+        $fileEntity->setName($filename);
+        $fileEntity->setPath($filePath);
+        $fileEntity->setHash(md5($data));
+
+        $fileRepository->add($fileEntity, true);
+
+        $sqlFolder = $projectDir . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Sql' . DIRECTORY_SEPARATOR;
+
+        ImportFileService::loadData($filename, $fileEntity->getFileId());
+
+        return new Response('File added', $status);
     }
 }
