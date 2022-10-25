@@ -39,28 +39,23 @@ class SupplierRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Supplier[] Returns an array of Supplier objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function find($id, $lockMode = null, $lockVersion = null): ?Supplier
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.supplierId = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
-//    public function findOneBySomeField($value): ?Supplier
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * @return Supplier[] Returns an array of Supplier objects
+     */
+    public function findAll(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.supplierId', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
