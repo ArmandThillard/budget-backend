@@ -142,7 +142,7 @@ class ImportFileService
                 export_csv.label,
                 category.category_id,
                 supplier.supplier_id,
-                REPLACE(export_csv.amount, ',', '.')::float,
+                REGEXP_REPLACE(export_csv.amount,'(-?)(\\d*)(\\s?)(\\d*)(,?)(\\d*)', '\\1\\2\\4.\\6')::float,
                 account.account_id,
                 export_csv.comment,
                 CASE WHEN export_csv.pointer = 'Non' THEN false ELSE true END,
