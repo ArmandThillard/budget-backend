@@ -55,10 +55,15 @@ class FileController extends AbstractController
 
         $fileRepository->add($fileEntity, true);
 
-        $sqlFolder = $projectDir . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Sql' . DIRECTORY_SEPARATOR;
+        $message = 'File added';
+        try {
+            ImportFileService::loadData($filename, $fileEntity->getFileId());
+        } catch (ErrorException $e) {
+            $status = 500;
+            $message = $e;
+            $fileRepository->remove($fileEntity, true);
+        }
 
-        ImportFileService::loadData($filename, $fileEntity->getFileId());
-
-        return new Response('File added', $status);
+        return new Response($message, $status);
     }
 }
