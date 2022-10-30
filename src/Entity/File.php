@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\FileRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -31,6 +32,18 @@ class File
 
     #[ORM\OneToMany(mappedBy: 'fileId', targetEntity: Transaction::class)]
     private Collection $transactions;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['show_transaction', 'show_file'])]
+    private ?\DateTimeInterface $importDate = null;
+
+    #[ORM\Column(length: 7)]
+    #[Groups(['show_transaction', 'show_file'])]
+    private ?string $month = null;
+
+    #[ORM\Column]
+    #[Groups(['show_transaction', 'show_file'])]
+    private ?bool $income = null;
 
     public function __construct()
     {
@@ -104,6 +117,42 @@ class File
                 $transaction->setFileId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImportDate(): ?\DateTimeInterface
+    {
+        return $this->importDate;
+    }
+
+    public function setImportDate(\DateTimeInterface $importDate): self
+    {
+        $this->importDate = $importDate;
+
+        return $this;
+    }
+
+    public function getMonth(): ?string
+    {
+        return $this->month;
+    }
+
+    public function setMonth(string $month): self
+    {
+        $this->month = $month;
+
+        return $this;
+    }
+
+    public function isIncome(): ?bool
+    {
+        return $this->income;
+    }
+
+    public function setIncome(bool $income): self
+    {
+        $this->income = $income;
 
         return $this;
     }
