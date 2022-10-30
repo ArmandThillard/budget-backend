@@ -22,8 +22,7 @@ class TransactionController extends AbstractController
         $transactions = $transactionRepository->findAll();
 
         $json = $serializer->serialize($transactions, 'json', ["groups" => "show_transaction"]);
-
-        $status = empty($transactions) ? 204 : 200;
+        $status = 200;
 
         $response = new Response($json, $status, [
             "Content-Type" => "application/json"
