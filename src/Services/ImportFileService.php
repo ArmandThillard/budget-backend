@@ -8,13 +8,12 @@ class ImportFileService
         $dbconn = pg_connect("host=localhost dbname=budget user=postgres password=postgres")
             or die('Connexion impossible : ' . pg_last_error());
 
-        $result = pg_query(self::copyCsv($csv));
-
-        $result = pg_query(self::updateParentsCategories()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query(self::updateCategories()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query(self::updateSuppliers()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query(self::updateAccounts()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query(self::updateTransactions($fileId)) or die('Échec de la requête : ' . pg_last_error());
+        $result = pg_query($dbconn, self::copyCsv($csv));
+        $result = pg_query($dbconn, self::updateParentsCategories()) or die('Échec de la requête : ' . pg_last_error());
+        $result = pg_query($dbconn, self::updateCategories()) or die('Échec de la requête : ' . pg_last_error());
+        $result = pg_query($dbconn, self::updateSuppliers()) or die('Échec de la requête : ' . pg_last_error());
+        $result = pg_query($dbconn, self::updateAccounts()) or die('Échec de la requête : ' . pg_last_error());
+        $result = pg_query($dbconn, self::updateTransactions($fileId)) or die('Échec de la requête : ' . pg_last_error());
 
         // Libère le résultat
         pg_free_result($result);
@@ -85,7 +84,7 @@ class ImportFileService
             WITH new_categories AS (
                 SELECT DISTINCT category, parents.category_id AS parent_category_id
                 FROM export_csv
-                LEFT JOIN category ON category.label = export_csv.category
+                LEFT JOIN category ON category.label = export_csv.category AND category.parent_category_id iS NOT NULL
                 JOIN category AS parents ON parents.label = export_csv.categoryparent
                 WHERE category.category_id IS NULL
             )
@@ -151,7 +150,7 @@ class ImportFileService
             FROM export_csv
             JOIN account ON account.num = export_csv.accountnum
             JOIN supplier ON supplier.label = export_csv.supplierfound
-            JOIN category ON category.label = export_csv.category
+            JOIN category ON category.label = export_csv.category AND category.parent_category_id IS NOT NULL
             ;
         SQL;
     }

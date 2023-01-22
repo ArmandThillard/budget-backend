@@ -15,7 +15,7 @@ FROM new_parent_categories
 WITH new_categories AS (
 	SELECT DISTINCT category, parents.category_id AS parent_category_id
 	FROM export_csv
-	LEFT JOIN category ON category.label = export_csv.category
+	LEFT JOIN category ON category.label = export_csv.category AND category.parent_category_id IS NOT NULL
 	JOIN category AS parents ON parents.label = export_csv.categoryparent
 	WHERE category.category_id IS NULL
 )
@@ -66,5 +66,5 @@ SELECT
 FROM export_csv
 JOIN account ON account.num = export_csv.accountnum
 JOIN supplier ON supplier.label = export_csv.supplierfound
-JOIN category ON category.label = export_csv.category
+JOIN category ON category.label = export_csv.category AND category.parent_category_id IS NOT NULL
 ;
