@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class FileController extends AbstractController
 {
 
-    #[Route('/file', name: 'file_list', methods: 'GET')]
+    #[Route('/api/file', name: 'file_list', methods: 'GET')]
     public function getFiles(FileRepository $fileRepository, NormalizerInterface $normalizer, SerializerInterface $serializer): Response
     {
         $files = $fileRepository->findAll();
@@ -33,7 +33,7 @@ class FileController extends AbstractController
         return $response;
     }
 
-    #[Route('/file', name: 'upload_file', methods: 'POST')]
+    #[Route('/api/file', name: 'upload_file', methods: 'POST')]
     public function uploadFile(Request $request, FileRepository $fileRepository): Response
     {
         $content = json_decode($request->getContent());

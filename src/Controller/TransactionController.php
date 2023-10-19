@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class TransactionController extends AbstractController
 {
 
-    #[Route('/transaction', name: 'transaction_list', methods: 'GET')]
+    #[Route('/api/transaction', name: 'transaction_list', methods: 'GET')]
     public function getTransactions(TransactionRepository $transactionRepository, SerializerInterface $serializer): Response
     {
         $transactions = $transactionRepository->findAll();
@@ -31,7 +31,7 @@ class TransactionController extends AbstractController
         return $response;
     }
 
-    #[Route('/transaction/{id}', name: 'update_transaction', methods: ['PUT'])]
+    #[Route('/api/transaction/{id}', name: 'update_transaction', methods: ['PUT'])]
     public function updateTransaction(Request $request, TransactionRepository $transactionRepository, SerializerInterface $serializer, int $id): Response
     {
         $transaction = $transactionRepository->find($id);
