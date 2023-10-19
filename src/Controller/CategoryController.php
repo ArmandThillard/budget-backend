@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class CategoryController extends AbstractController
 {
 
-    #[Route('/category', name: 'category_list', methods: 'GET')]
+    #[Route('/api/category', name: 'category_list', methods: 'GET')]
     public function getCategories(CategoryRepository $categoryRepository, NormalizerInterface $normalizer): Response
     {
         $categories = $categoryRepository->findAll();
