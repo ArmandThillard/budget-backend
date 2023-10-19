@@ -5,10 +5,11 @@ class ImportFileService
     public static function loadData(string $csv, int $fileId): void
     {
 
-        $dbconn = pg_connect("host=localhost dbname=budget user=postgres password=postgres")
+        $dbconn = pg_connect("host=localhost dbname=budget user=ath password=postgresdb")
             or die('Connexion impossible : ' . pg_last_error());
 
-        $result = pg_query($dbconn, self::copyCsv($csv));
+        $result = pg_query($dbconn, self::createExportCsvTable());
+        self::copyCsv($csv);
         $result = pg_query($dbconn, self::updateParentsCategories()) or die('Échec de la requête : ' . pg_last_error());
         $result = pg_query($dbconn, self::updateCategories()) or die('Échec de la requête : ' . pg_last_error());
         $result = pg_query($dbconn, self::updateSuppliers()) or die('Échec de la requête : ' . pg_last_error());
@@ -23,19 +24,17 @@ class ImportFileService
     }
 
     /**
-     * SQL statements uploading csv data to temp table.
-     * 
-     * @param string $filename CSV filename to copy.
+     * SQL statements creating export_csv table used to import csv data.
      * 
      * @return string SQL statement
      */
-    private static function copyCsv(string $filename): string
+    private static function createExportCsvTable(): string
     {
         return <<<SQL
             DROP TABLE IF EXISTS export_csv
             ;
 
-            CREATE TEMP TABLE export_csv (
+            CREATE TABLE export_csv (
                 dateOp TEXT,
                 dateVal TEXT ,
                 label TEXT,
@@ -50,14 +49,27 @@ class ImportFileService
                 pointer TEXT
             );
 
-            COPY export_csv
-            FROM '/var/www/budget/var/csv/$filename'
-            WITH
-                DELIMITER ';'
-                HEADER CSV
-            ;
-    
         SQL;
+    }
+
+    /**
+     * PSQL command to load CSV file to database.
+     * 
+     * @param string $filename CSV filename to copy.
+     * 
+     * @throws Exception When psql command's exit code is 1.
+     */
+    private static function copyCsv(string $filename): void
+    {
+        $cmd = "(psql budget -c \"\copy export_csv FROM '/home/ath/budget/budget-backend/var/csv/$filename' WITH DELIMITER ';' HEADER CSV;\") 2>&1";
+        
+        $output = null;
+        $exit_code = null;
+        exec($cmd, $output, $exit_code);
+        
+        if($exit_code == 1) {
+            throw new Exception("An error occured while copying $filename to database : " . serialize($output));
+        }
     }
 
     private static function updateParentsCategories(): string
@@ -104,6 +116,7 @@ class ImportFileService
                 FROM export_csv
                 LEFT JOIN supplier ON supplier.label = export_csv.supplierfound
                 WHERE supplier.supplier_id IS NULL
+                AND supplierfound IS NOT NULL
             )
             INSERT INTO supplier (supplier_id, label, name)
             SELECT nextval('supplier_seq'), new_suppliers.supplierfound,  new_suppliers.supplierfound
@@ -135,21 +148,21 @@ class ImportFileService
             -- Transactions
             INSERT INTO transaction (transaction_id, date_op, date_val, label, category_id, supplier_id, amount, account_id, comment, pointed, need, file_id)
             SELECT
-                nextval('transaction_seq'),
-                TO_DATE(export_csv.dateop, 'DD/MM/YYYY'),
-                TO_DATE(export_csv.dateval, 'DD/MM/YYYY'),
+                nextval('transaction_seq') AS transaction_id,
+                TO_DATE(export_csv.dateop, 'DD/MM/YYYY') AS dateop,
+                TO_DATE(export_csv.dateval, 'DD/MM/YYYY') AS dateval,
                 export_csv.label,
                 category.category_id,
-                supplier.supplier_id,
-                REGEXP_REPLACE(export_csv.amount,'(-?)(\\d*)(\\s?)(\\d*)(,?)(\\d*)', '\\1\\2\\4.\\6')::float,
+                COALESCE(supplier.supplier_id, 0) AS supplier_id,
+                REGEXP_REPLACE(export_csv.amount,'(-?)(\\d*)(\\s?)(\\d*)(,?)(\\d*)', '\\1\\2\\4.\\6')::float AS amount,
                 account.account_id,
-                export_csv.comment,
-                CASE WHEN export_csv.pointer = 'Non' THEN false ELSE true END,
+                COALESCE(export_csv.comment, '') AS comment,
+                CASE WHEN export_csv.pointer = 'Non' THEN false ELSE true END AS pointed,
                 false AS need,
-                $fileId
+                $fileId AS file_id
             FROM export_csv
             JOIN account ON account.num = export_csv.accountnum
-            JOIN supplier ON supplier.label = export_csv.supplierfound
+            LEFT JOIN supplier ON supplier.label = export_csv.supplierfound
             JOIN category ON category.label = export_csv.category AND category.parent_category_id IS NOT NULL
             ;
         SQL;
