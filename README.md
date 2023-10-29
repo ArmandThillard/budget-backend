@@ -16,7 +16,13 @@ This project needs a PostgreSQL database to store data.
 
 # Test
 
-- `php bin/console --env=test d:d:c`
-- `php bin/console --env=test d:s:c`
-- `php bin/console --env=test d:f:l`
-- `php bin/phpunit`
+## Local test
+
+### Database
+
+1. Create and edit `.env.test.local` with test database URL :
+   `DATABASE_URL=postgres://$user:$password@172.26.58.160:5432/budget-test`
+2. Create the test database : `php bin/console --env=test doctrine:database:create`
+3. Create the tables/columns in the test database : `php bin/console --env=test doctrine:schema:create`
+4. Load fixtures : `php bin/console --env=test doctrine:fixtures:load`
+5. Run test cases : `php bin/phpunit`
