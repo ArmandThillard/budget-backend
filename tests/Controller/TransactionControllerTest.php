@@ -17,7 +17,7 @@ class TransactionControllerTest extends WebTestCase
 
     public function testGetTransactionsSuccessful(): void
     {
-        $this->client->request('GET', '/transaction');
+        $this->client->request('GET', '/api/transaction');
         $response = $this->client->getResponse();
 
         $this->assertResponseIsSuccessful('Response is successfull');
@@ -41,7 +41,7 @@ class TransactionControllerTest extends WebTestCase
             'fileId' => 0
         ];
 
-        $this->client->request('PUT', '/transaction/0', [], [], [], json_encode($data));
+        $this->client->request('PUT', '/api/transaction/0', [], [], [], json_encode($data));
 
         $this->assertResponseIsSuccessful('Response is succesfull');
     }
@@ -66,7 +66,7 @@ class TransactionControllerTest extends WebTestCase
             'fileId' => 0
         ];
 
-        $this->client->request('PUT', '/transaction/1500', [
+        $this->client->request('PUT', '/api/transaction/1500', [
             'body' => json_encode($data)
         ]);
 

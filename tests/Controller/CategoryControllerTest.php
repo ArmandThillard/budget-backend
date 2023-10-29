@@ -14,9 +14,9 @@ class CategoryControllerTest extends WebTestCase
         $this->client = self::createClient();
     }
 
-    public function testgetCategories(): void
+    public function testGetCategories(): void
     {
-        $this->client->request('GET', '/category');
+        $this->client->request('GET', '/api/category');
         $response = $this->client->getResponse();
 
         $this->assertResponseIsSuccessful('Response is succesful');
