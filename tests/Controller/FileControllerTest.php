@@ -14,9 +14,9 @@ class FileControllerTest extends WebTestCase
         $this->client = self::createClient();
     }
 
-    public function testgetFiles(): void
+    public function testGetFiles(): void
     {
-        $this->client->request('GET', '/file');
+        $this->client->request('GET', '/api/file');
         $response = $this->client->getResponse();
 
         $this->assertResponseIsSuccessful('Response is succesful');
