@@ -83,11 +83,9 @@ class Account
 
     public function removeTransaction(Transaction $transaction): self
     {
-        if ($this->transactions->removeElement($transaction)) {
+        if ($this->transactions->removeElement($transaction) && $transaction->getAccountId() === $this) {
             // set the owning side to null (unless already changed)
-            if ($transaction->getAccountId() === $this) {
-                $transaction->setAccountId(null);
-            }
+            $transaction->setAccountId(null);
         }
 
         return $this;

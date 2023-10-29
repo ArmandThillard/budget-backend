@@ -111,11 +111,9 @@ class File
 
     public function removeTransaction(Transaction $transaction): self
     {
-        if ($this->transactions->removeElement($transaction)) {
+        if ($this->transactions->removeElement($transaction) && $transaction->getFileId() === $this) {
             // set the owning side to null (unless already changed)
-            if ($transaction->getFileId() === $this) {
-                $transaction->setFileId(null);
-            }
+            $transaction->setFileId(null);
         }
 
         return $this;

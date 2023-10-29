@@ -18,19 +18,20 @@ class FileController extends AbstractController
 {
 
     #[Route('/api/file', name: 'file_list', methods: 'GET')]
-    public function getFiles(FileRepository $fileRepository, NormalizerInterface $normalizer, SerializerInterface $serializer): Response
+    public function getFiles(
+        FileRepository $fileRepository,
+        NormalizerInterface $normalizer,
+        SerializerInterface $serializer
+    ): Response
     {
         $files = $fileRepository->findAll();
 
         $json = $serializer->serialize($files, 'json', ["groups" => "show_transaction"]);
         $status = 200;
 
-
-        $response = new Response($json, $status, [
+        return new Response($json, $status, [
             "Content-Type" => "application/json"
         ]);
-
-        return $response;
     }
 
     #[Route('/api/file', name: 'upload_file', methods: 'POST')]
@@ -45,7 +46,7 @@ class FileController extends AbstractController
 
         $projectDir = $this->getParameter('kernel.project_dir');
 
-        $filePath = $projectDir . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'csv' . DIRECTORY_SEPARATOR . $filename;
+        $filePath = $projectDir.DIRECTORY_SEPARATOR.'var'.DIRECTORY_SEPARATOR.'csv'.DIRECTORY_SEPARATOR.$filename;
 
         file_put_contents($filePath, $data);
 
