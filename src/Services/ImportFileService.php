@@ -18,9 +18,6 @@ class ImportFileService
         pg_query($dbconn, self::updateAccounts()) or die($error_msg . pg_last_error());
         pg_query($dbconn, self::updateTransactions($fileId)) or die($error_msg . pg_last_error());
 
-        // Libère le résultat
-        pg_free_result($result);
-
         // Ferme la connexion
         pg_close($dbconn);
     }
@@ -64,12 +61,12 @@ class ImportFileService
     private static function copyCsv(string $filename): void
     {
         $cmd = "(psql budget -c \"\copy export_csv FROM '/home/ath/budget/budget-backend/var/csv/$filename' WITH DELIMITER ';' HEADER CSV;\") 2>&1";
-        
+
         $output = null;
         $exit_code = null;
         exec($cmd, $output, $exit_code);
-        
-        if($exit_code == 1) {
+
+        if ($exit_code == 1) {
             throw new Exception("An error occured while copying $filename to database : " . serialize($output));
         }
     }
