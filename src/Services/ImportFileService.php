@@ -4,8 +4,12 @@ class ImportFileService
 {
     public static function loadData(string $csv, int $fileId): void
     {
+        $host = $_ENV['DATABASE_HOST'];
+        $dbname = $_ENV['DATABASE_DBNAME'];
+        $user = $_ENV['DATABASE_USER'];
+        $pwd = $_ENV['DATABASE_PASSWORD'];
 
-        $dbconn = pg_connect("host=localhost dbname=budget user=ath password=postgresdb")
+        $dbconn = pg_connect("host=$host dbname=$dbname user=$user password=$pwd")
             or die('Connexion impossible : ' . pg_last_error());
 
         $error_msg = 'Échec de la requête : ';
