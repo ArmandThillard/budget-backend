@@ -83,11 +83,9 @@ class Supplier
 
     public function removeTransaction(Transaction $transaction): self
     {
-        if ($this->transactions->removeElement($transaction)) {
+        if ($this->transactions->removeElement($transaction) && $transaction->getSupplierId() === $this) {
             // set the owning side to null (unless already changed)
-            if ($transaction->getSupplierId() === $this) {
-                $transaction->setSupplierId(null);
-            }
+            $transaction->setSupplierId(null);
         }
 
         return $this;

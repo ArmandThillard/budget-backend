@@ -22,10 +22,8 @@ class CategoryController extends AbstractController
 
         $status = empty($categories) ? 204 : 200;
 
-        $response = new Response($json, $status, [
+        return new Response($json, $status, [
             "Content-Type" => "application/json"
         ]);
-
-        return $response;
     }
 }

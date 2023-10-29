@@ -83,11 +83,9 @@ class Category
 
     public function removeTransaction(Transaction $transaction): self
     {
-        if ($this->transactions->removeElement($transaction)) {
+        if ($this->transactions->removeElement($transaction) && $transaction->getCategoryId() === $this) {
             // set the owning side to null (unless already changed)
-            if ($transaction->getCategoryId() === $this) {
-                $transaction->setCategoryId(null);
-            }
+            $transaction->setCategoryId(null);
         }
 
         return $this;

@@ -8,13 +8,15 @@ class ImportFileService
         $dbconn = pg_connect("host=localhost dbname=budget user=ath password=postgresdb")
             or die('Connexion impossible : ' . pg_last_error());
 
-        $result = pg_query($dbconn, self::createExportCsvTable());
+        $error_msg = 'Échec de la requête : ';
+
+        pg_query($dbconn, self::createExportCsvTable());
         self::copyCsv($csv);
-        $result = pg_query($dbconn, self::updateParentsCategories()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query($dbconn, self::updateCategories()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query($dbconn, self::updateSuppliers()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query($dbconn, self::updateAccounts()) or die('Échec de la requête : ' . pg_last_error());
-        $result = pg_query($dbconn, self::updateTransactions($fileId)) or die('Échec de la requête : ' . pg_last_error());
+        pg_query($dbconn, self::updateParentsCategories()) or die($error_msg . pg_last_error());
+        pg_query($dbconn, self::updateCategories()) or die($error_msg . pg_last_error());
+        pg_query($dbconn, self::updateSuppliers()) or die($error_msg . pg_last_error());
+        pg_query($dbconn, self::updateAccounts()) or die($error_msg . pg_last_error());
+        pg_query($dbconn, self::updateTransactions($fileId)) or die($error_msg . pg_last_error());
 
         // Libère le résultat
         pg_free_result($result);
@@ -54,9 +56,9 @@ class ImportFileService
 
     /**
      * PSQL command to load CSV file to database.
-     * 
+     *
      * @param string $filename CSV filename to copy.
-     * 
+     *
      * @throws Exception When psql command's exit code is 1.
      */
     private static function copyCsv(string $filename): void

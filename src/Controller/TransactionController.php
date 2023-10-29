@@ -17,22 +17,27 @@ class TransactionController extends AbstractController
 {
 
     #[Route('/api/transaction', name: 'transaction_list', methods: 'GET')]
-    public function getTransactions(TransactionRepository $transactionRepository, SerializerInterface $serializer): Response
+    public function getTransactions(
+        TransactionRepository $transactionRepository,
+        SerializerInterface $serializer
+    ): Response
     {
         $transactions = $transactionRepository->findAll();
 
         $json = $serializer->serialize($transactions, 'json', ["groups" => "show_transaction"]);
         $status = 200;
 
-        $response = new Response($json, $status, [
+        return new Response($json, $status, [
             "Content-Type" => "application/json"
         ]);
-
-        return $response;
     }
 
     #[Route('/api/transaction/{id}', name: 'update_transaction', methods: ['PUT'])]
-    public function updateTransaction(Request $request, TransactionRepository $transactionRepository, SerializerInterface $serializer, int $id): Response
+    public function updateTransaction(
+        Request $request,
+        TransactionRepository $transactionRepository,
+        SerializerInterface $serializer, int $id
+    ): Response
     {
         $transaction = $transactionRepository->find($id);
 
@@ -43,7 +48,15 @@ class TransactionController extends AbstractController
             ));
         }
 
-        $serializer->deserialize($request->getContent(), Transaction::class, 'json', [AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true, AbstractNormalizer::OBJECT_TO_POPULATE => $transaction]);
+        $serializer->deserialize(
+            $request->getContent(),
+            Transaction::class,
+            'json',
+            [
+                AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true,
+                AbstractNormalizer::OBJECT_TO_POPULATE => $transaction
+            ]
+        );
 
         $transactionRepository->update();
 
