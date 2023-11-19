@@ -26,7 +26,7 @@ This project needs a PostgreSQL database to store data.
 3. Create the tables/columns in the test database : `php bin/console --env=test doctrine:schema:create`
 4. Load fixtures : `php bin/console --env=test doctrine:fixtures:load`
 5. Run test cases : `php bin/phpunit`
-6. For Soanar analysis : `XDEBUG_MODE=coverage php bin/phpunit --coverage-clover coverage.xml`
+6. For Soanar analysis : `XDEBUG_MODE=coverage php bin/phpunit --coverage-clover var/tests/coverage.xml`
 
 # SonarQube
 

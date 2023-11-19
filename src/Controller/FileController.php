@@ -22,8 +22,7 @@ class FileController extends AbstractController
         FileRepository $fileRepository,
         NormalizerInterface $normalizer,
         SerializerInterface $serializer
-    ): Response
-    {
+    ): Response {
         $files = $fileRepository->findAll();
 
         $json = $serializer->serialize($files, 'json', ["groups" => "show_transaction"]);
@@ -46,7 +45,7 @@ class FileController extends AbstractController
 
         $projectDir = $this->getParameter('kernel.project_dir');
 
-        $filePath = $projectDir.DIRECTORY_SEPARATOR.'var'.DIRECTORY_SEPARATOR.'csv'.DIRECTORY_SEPARATOR.$filename;
+        $filePath = $projectDir . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'csv' . DIRECTORY_SEPARATOR . $filename;
 
         file_put_contents($filePath, $data);
 
@@ -63,9 +62,11 @@ class FileController extends AbstractController
 
         $fileRepository->add($fileEntity, true);
 
-        $message = 'File added';
+        $fileId = $fileEntity->getFileId();
+
+        $message = "File added with id $fileId";
         try {
-            ImportFileService::loadData($filename, $fileEntity->getFileId());
+            ImportFileService::loadData($filename, $fileId);
         } catch (ErrorException $e) {
             $status = 500;
             $message = $e;

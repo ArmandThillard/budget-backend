@@ -1,0 +1,43 @@
+dateOp;dateVal;label;category;categoryParent;supplierFound;amount;accountNum;accountLabel;accountBalance;comment;pointer
+29/09/2023;29/09/2023;Lorem ipsum dolor sit amet, consectetur adipiscing elit.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-0,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+29/09/2023;29/09/2023;Vivamus dignissim orci quis justo rutrum hendrerit.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-0,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+29/09/2023;29/09/2023;Cras imperdiet erat sed fermentum elementum.;Restaurants, bars, discothèques…;Loisirs et sorties;gasco pub;-13,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+29/09/2023;29/09/2023;Duis id tortor consequat odio rutrum varius sit amet a lorem.;Restaurants, bars, discothèques…;Loisirs et sorties;gasco pub;-14,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+29/09/2023;29/09/2023;Nunc eget urna suscipit, maximus eros ut, consectetur ligula.;Restaurants, bars, discothèques…;Loisirs et sorties;gasco pub;-23,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+29/09/2023;29/09/2023;Curabitur ultricies eros eu metus vestibulum laoreet.;Restaurants, bars, discothèques…;Loisirs et sorties;gasco pub;-42,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+29/09/2023;29/09/2023;In mollis metus ut ante mattis malesuada.;Restaurants, bars, discothèques…;Loisirs et sorties;gasco pub;-9,50;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+29/09/2023;29/09/2023;Donec ut nulla at arcu facilisis lacinia a sit amet metus.;Epargne bancaire (Livret A, PEL…);Dépenses d'épargne;vir m thillard armand virement vers ldd solidaire;-413,43;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+28/09/2023;28/09/2023;Suspendisse molestie purus in purus consectetur fermentum.;Retraits cash;Retraits cash;Retrait automate;-250,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+28/09/2023;28/09/2023;Praesent porta elit eget nisl facilisis vestibulum eget a nibh.;Non catégorisé;Non catégorisé;;-3,65;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+25/09/2023;25/09/2023;Etiam ut felis id tortor pretium condimentum suscipit vel tortor.;Carburant;Auto & Moto;carrefour dac;-87,87;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+21/09/2023;21/09/2023;Vestibulum gravida massa sed elementum consequat.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-5,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+21/09/2023;21/09/2023;Fusce non nisl eu libero tempor lobortis sed id sapien.;Abonnements & téléphonie;Abonnements & téléphonie;carte ticket refr hauts de sei 9;-9,20;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+21/09/2023;21/09/2023;Nullam accumsan nibh nec ullamcorper elementum.;Livres, CD/DVD, bijoux, jouets…;Vie quotidienne;spotify;-17,99;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+20/09/2023;20/09/2023;Integer sit amet mauris quis nisi vestibulum aliquam.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-0,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+20/09/2023;20/09/2023;Aenean et quam ac risus rhoncus malesuada.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-0,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+20/09/2023;20/09/2023;Sed eu sapien lacinia, tempus enim a, fringilla velit.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-0,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+20/09/2023;20/09/2023;Phasellus vehicula justo sit amet purus tincidunt aliquam.;Multimedia à domicile (TV, internet, téléphonie…);Abonnements & téléphonie;disneyplus;-8,99;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+20/09/2023;20/09/2023;Fusce viverra enim vel tellus pretium, at sollicitudin arcu tristique.;Non catégorisé;Non catégorisé;;-4,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+20/09/2023;20/09/2023;Integer a eros vel nunc luctus suscipit volutpat eu ex.;Péages;Auto & Moto;autoroutes du;-160,54;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+19/09/2023;19/09/2023;Lorem ipsum dolor sit amet, consectetur adipiscing elit.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-0,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+19/09/2023;19/09/2023;Vivamus dignissim orci quis justo rutrum hendrerit.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-0,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+18/09/2023;18/09/2023;Cras imperdiet erat sed fermentum elementum.;Alimentation;Vie quotidienne;v and b;-4,50;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+18/09/2023;18/09/2023;Duis id tortor consequat odio rutrum varius sit amet a lorem.;Alimentation;Vie quotidienne;v and b;-4,50;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+18/09/2023;18/09/2023;Nunc eget urna suscipit, maximus eros ut, consectetur ligula.;Carburant;Auto & Moto;carrefour dac;-82,76;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+18/09/2023;18/09/2023;Curabitur ultricies eros eu metus vestibulum laoreet.;Virements émis;Virements émis;\"vir dept de garantie hip virement de m armand thillard virement \";-9 000,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+15/09/2023;15/09/2023;In mollis metus ut ante mattis malesuada.;Alimentation;Vie quotidienne;auchan;-4,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+15/09/2023;15/09/2023;Donec ut nulla at arcu facilisis lacinia a sit amet metus.;Epargne bancaire (Livret A, PEL…);Dépenses d'épargne;vir m thillard armand virement vers ldd solidaire;-300,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+12/09/2023;12/09/2023;Suspendisse molestie purus in purus consectetur fermentum.;Urssaf et charges patronales;Impôts & Taxes;urssaf;-320,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+11/09/2023;11/09/2023;Praesent porta elit eget nisl facilisis vestibulum eget a nibh.;Carburant;Auto & Moto;carrefour dac;-23,11;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+11/09/2023;11/09/2023;Etiam ut felis id tortor pretium condimentum suscipit vel tortor.;Non catégorisé;Non catégorisé;;-4,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+11/09/2023;11/09/2023;Vestibulum gravida massa sed elementum consequat.;Alimentation;Vie quotidienne;carrefour;-6,40;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+08/09/2023;08/09/2023;Fusce non nisl eu libero tempor lobortis sed id sapien.;Restaurants, bars, discothèques…;Loisirs et sorties;3 bda expresso;-5,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+08/09/2023;08/09/2023;Nullam accumsan nibh nec ullamcorper elementum.;Restaurants, bars, discothèques…;Loisirs et sorties;le beyrouthin;-10,50;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+08/09/2023;08/09/2023;Integer sit amet mauris quis nisi vestibulum aliquam.;Virements émis;Virements émis;vir m thillard armand;-200,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+07/09/2023;07/09/2023;Aenean et quam ac risus rhoncus malesuada.;Alimentation;Vie quotidienne;auchan;-4,09;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+07/09/2023;07/09/2023;Sed eu sapien lacinia, tempus enim a, fringilla velit.;Carburant;Auto & Moto;avia;-70,94;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+07/09/2023;07/09/2023;Phasellus vehicula justo sit amet purus tincidunt aliquam.;Divertissement - culture (ciné, théâtre, concerts…);Loisirs et sorties;vilnamond;-22,20;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+07/09/2023;07/09/2023;Fusce viverra enim vel tellus pretium, at sollicitudin arcu tristique.;Assurances (Auto/Moto);Auto & Moto;maif;-98,75;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+07/09/2023;08/09/2023;Integer a eros vel nunc luctus suscipit volutpat eu ex.;Frais bancaires et de gestion (dont agios);Services financiers & professionnels;Banque Populaire (Groupe);-5,05;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+05/09/2023;05/09/2023;Lorem ipsum dolor sit amet, consectetur adipiscing elit.;Virements émis;Virements émis;vir m thillard armand virement vers ldd solidaire;-330,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
+01/09/2023;01/09/2023;Vivamus dignissim orci quis justo rutrum hendrerit.;Virements émis de comptes à comptes;Mouvements internes débiteurs;vir compte joint des sous pour l audi;-700,00;000-CPT00000000000;M ARMAND THILLARD;773,68;;Non
