@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Services;
+
 class ImportFileService
 {
     private const SQL_PATH = __DIR__ . '/../Sql/import/';
